@@ -17,7 +17,7 @@ let userSchema = mongoose.Schema({
     }
 });
 
-let User = module.exports = mongoose.model('person',userSchema);
+let User = module.exports = mongoose.model('usuario',userSchema,'usuario');
 
 module.exports.get = (callback,limit)=>{
     User.find(callback).limit(limit);

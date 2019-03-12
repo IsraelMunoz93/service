@@ -1,4 +1,6 @@
 User = require('./userModel.js');
+let mongoose = require('mongoose');
+let ObjectId = mongoose.Types.ObjectId;
 
 exports.index = (req,res)=>{
     User.get((err,usuario)=>{
@@ -35,7 +37,7 @@ exports.new = (req,res)=>{
 }
 
 exports.view = (req,res)=>{
-    User.findById(req.params.user_id,(err,user)=>{
+    User.findById(req.params._id ,(err,user)=>{
         if(err) res.send(err);
 
         res.json({
@@ -47,7 +49,7 @@ exports.view = (req,res)=>{
 }
 
 exports.update = (req,res)=>{
-    User.findById(req.params.user_id,(err,user)=>{
+    User.findById(req.params._id,(err,user)=>{
         if(err) res.send(err);
 
         user.name = req.body.name ? req.body.name : user.name;
@@ -68,7 +70,7 @@ exports.update = (req,res)=>{
 
 exports.delete = (req,res)=>{
     User.remove({
-        _id: req.params.user_id},(err,user)=>{
+        _id: req.params._id},(err,user)=>{
             if(err) res.send(err);
 
             res.json({
